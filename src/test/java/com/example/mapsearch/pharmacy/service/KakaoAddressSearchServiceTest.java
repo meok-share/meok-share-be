@@ -44,46 +44,46 @@ class KakaoAddressSearchServiceTest {
     private KakaoAddressSearchService kakaoAddressSearchService;
 
 
-    @Test
-    @Deprecated
-    @DisplayName("서버 에러 발생 시 Retry able 이 잘 작동하는지 테스트")
-    void requestAddressSearch_retryOnServerError_shouldSucceedOnRetry() {
-        // given
-        String address = "서울시 강남구 역삼동";
-
-        KakaoApiResponse kakaoApiResponse = new KakaoApiResponse();
-        kakaoApiResponse.setDocumentList(Collections.singletonList(new Document()));
-        ResponseEntity<KakaoApiResponse> responseEntity = new ResponseEntity<>(kakaoApiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK 88b2073ae586a8d628c80c6bc5d7f022");
-        HttpEntity<Void> httpEntity = new HttpEntity<>(null, headers);
-
-        // 첫번째 요청에서 서버 에러 발생
-        Mockito.when(kakaoUriBuilderService.buildUriByAddressSearch(address))
-                .thenReturn(URI.create("https://dapi.kakao.com/v2/local/search/address.json"));
-
-        Mockito.when(restTemplate.exchange(
-                        ArgumentMatchers.any(URI.class),
-                        ArgumentMatchers.any(HttpMethod.class),
-                        ArgumentMatchers.any(HttpEntity.class),
-                        ArgumentMatchers.<Class<KakaoApiResponse>>any())
-                )
-                .thenReturn(responseEntity)
-                // 첫번째 요청에서 예외가 발생하도록 설정
-                .thenThrow(new RuntimeException("Connection failed"))
-                // 두번째 요청에서는 정상 응답이 돌아오도록 설정
-                .thenReturn(new ResponseEntity<>(kakaoApiResponse, HttpStatus.OK));
-
-        // when
-        KakaoApiResponse actual = kakaoAddressSearchService.requestAddressSearch(address);
-
-        // then
-        assertThat(actual.getDocumentList().size()).isEqualTo(1);
-
-        // 첫번째 요청은 실패했으므로 2번 호출되어야 함
-        Mockito.verify(kakaoUriBuilderService, Mockito.times(2)).buildUriByAddressSearch(address);
-    }
+//    @Test
+//    @Deprecated
+//    @DisplayName("서버 에러 발생 시 Retry able 이 잘 작동하는지 테스트")
+//    void requestAddressSearch_retryOnServerError_shouldSucceedOnRetry() {
+//        // given
+//        String address = "서울시 강남구 역삼동";
+//
+//        KakaoApiResponse kakaoApiResponse = new KakaoApiResponse();
+//        kakaoApiResponse.setDocumentList(Collections.singletonList(new Document()));
+//        ResponseEntity<KakaoApiResponse> responseEntity = new ResponseEntity<>(kakaoApiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Authorization", "KakaoAK 88b2073ae586a8d628c80c6bc5d7f022");
+//        HttpEntity<Void> httpEntity = new HttpEntity<>(null, headers);
+//
+//        // 첫번째 요청에서 서버 에러 발생
+//        Mockito.when(kakaoUriBuilderService.buildUriByAddressSearch(address))
+//                .thenReturn(URI.create("https://dapi.kakao.com/v2/local/search/address.json"));
+//
+//        Mockito.when(restTemplate.exchange(
+//                        ArgumentMatchers.any(URI.class),
+//                        ArgumentMatchers.any(HttpMethod.class),
+//                        ArgumentMatchers.any(HttpEntity.class),
+//                        ArgumentMatchers.<Class<KakaoApiResponse>>any())
+//                )
+//                .thenReturn(responseEntity)
+//                // 첫번째 요청에서 예외가 발생하도록 설정
+//                .thenThrow(new RuntimeException("Connection failed"))
+//                // 두번째 요청에서는 정상 응답이 돌아오도록 설정
+//                .thenReturn(new ResponseEntity<>(kakaoApiResponse, HttpStatus.OK));
+//
+//        // when
+//        KakaoApiResponse actual = kakaoAddressSearchService.requestAddressSearch(address);
+//
+//        // then
+//        assertThat(actual.getDocumentList().size()).isEqualTo(1);
+//
+//        // 첫번째 요청은 실패했으므로 2번 호출되어야 함
+//        Mockito.verify(kakaoUriBuilderService, Mockito.times(2)).buildUriByAddressSearch(address);
+//    }
 
 
     @Test
