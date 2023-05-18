@@ -23,8 +23,11 @@ public class CustomResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request, ServerHttpResponse response) {
-        Map<String, Object> result = new HashMap<>();
-        result.put("data", body);
-        return result;
+        if (body instanceof Map) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("data", body);
+            return result;
+        }
+        return body;
     }
 }
