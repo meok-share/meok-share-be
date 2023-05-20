@@ -5,8 +5,8 @@ import com.example.mapsearch.api.dto.KakaoApiResponse;
 import com.example.mapsearch.api.service.KakaoAddressSearchService;
 import com.example.mapsearch.direction.entity.Direction;
 import com.example.mapsearch.direction.service.Base62Service;
-import com.example.mapsearch.restaurant.controller.response.DirectionRes;
 import com.example.mapsearch.direction.service.DirectionService;
+import com.example.mapsearch.restaurant.controller.response.DirectionRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +33,8 @@ public class RestaurantRecommendationService {
     private String baseUrl;
 
     /**
-     * 고객의 주소를 받아서 공공기관 약국 데이터를 이용하여 가장 가까운 약국을 추천해주는 서비스
+     * 고객의 주소를 받아서 카카오 주소 api 를 이용하여 가장 가까운 음식점을 추천해준다.
+     *
      * @param address
      * @return
      */
@@ -51,7 +52,7 @@ public class RestaurantRecommendationService {
                 .get(0);
 
         // 공공기관 약국 데이터 및 거리계산 알고리즘 이용
-//         List<Direction> directionList = directionService.buildDirectionList(document);
+        // List<Direction> directionList = directionService.buildDirectionList(document);
 
         // kakao 카테고리를 이용한 장소 검색 api 허용
         final List<Direction> directionList = directionService.buildDirectionListByCategoryApi(document);

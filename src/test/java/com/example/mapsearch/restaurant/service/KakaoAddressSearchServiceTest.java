@@ -1,30 +1,16 @@
 package com.example.mapsearch.restaurant.service;
 
-import com.example.mapsearch.api.dto.Document;
-import com.example.mapsearch.api.dto.KakaoApiResponse;
 import com.example.mapsearch.api.service.KakaoAddressSearchService;
 import com.example.mapsearch.api.service.KakaoUriBuilderService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.retry.support.RetryTemplate;
-
-import java.net.URI;
-import java.util.Collections;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 @SpringBootTest
