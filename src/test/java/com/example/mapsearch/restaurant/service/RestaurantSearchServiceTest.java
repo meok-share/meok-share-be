@@ -3,8 +3,6 @@ package com.example.mapsearch.restaurant.service;
 import com.example.mapsearch.restaurant.cache.RedisTemplateService;
 import com.example.mapsearch.restaurant.dto.RestaurantDto;
 import com.example.mapsearch.restaurant.entity.Restaurant;
-import com.example.mapsearch.restaurant.service.RestaurantRepositoryService;
-import com.example.mapsearch.restaurant.service.RestaurantSearchService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,7 +62,7 @@ class RestaurantSearchServiceTest {
                 .thenReturn(restaurantList);
 
         // then
-        List<RestaurantDto> restaurantList = restaurantSearchService.searchPharmacyList();
+        List<RestaurantDto> restaurantList = restaurantSearchService.searchRestaurantList();
         assertThat(restaurantList).hasSize(2);
     }
 

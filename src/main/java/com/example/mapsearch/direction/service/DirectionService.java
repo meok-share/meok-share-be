@@ -54,7 +54,7 @@ public class DirectionService {
     public List<Direction> buildDirectionList(Document documentDto) {
         if(Objects.isNull(documentDto)) return Collections.emptyList();
 
-        return restaurantSearchService.searchPharmacyList()
+        return restaurantSearchService.searchRestaurantList()
                 .stream().map(restaurantDto ->
                         Direction.builder()
                                 .inputAddress(documentDto.getAddressName())
@@ -68,10 +68,7 @@ public class DirectionService {
                                         calculateDistance(documentDto.getLatitude(), documentDto.getLongitude(),
                                                 restaurantDto.getLatitude(), restaurantDto.getLongitude()))
                                 .build())
-                .filter(direction -> {
-                    log.info("direction: {}", direction);
-                    return direction.getDistance() <= RADIUS_KM;
-                })
+                .filter(direction -> direction.getDistance() <= RADIUS_KM)
                 .sorted(Comparator.comparing(Direction::getDistance))
                 .limit(MAX_SEARCH_COUNT)
                 .collect(Collectors.toList());
@@ -88,7 +85,7 @@ public class DirectionService {
         return earthRadius * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2));
     }
 
-    // pharmacy search by category kakao api
+    // restaurant search by category kakao api
     public List<Direction> buildDirectionListByCategoryApi(Document inputDocumentDto) {
         if(Objects.isNull(inputDocumentDto)) return Collections.emptyList();
 

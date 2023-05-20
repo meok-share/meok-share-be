@@ -22,19 +22,19 @@ public class RestaurantSearchService {
 
     private final RedisTemplateService redisTemplateService;
 
-    public List<RestaurantDto> searchPharmacyList() {
+    public List<RestaurantDto> searchRestaurantList() {
 
         // redis
-        final List<RestaurantDto> restaurantList = redisTemplateService.findAll();
+        final List<RestaurantDto> restaurantDtoList = redisTemplateService.findAll();
 
-        if (!restaurantList.isEmpty()) {
-            return restaurantList;
+        if (!restaurantDtoList.isEmpty()) {
+            return restaurantDtoList;
         }
 
         // db
-        final List<Restaurant> pharmacyList = restaurantRepositoryService.findAll();
+        final List<Restaurant> restaurantList = restaurantRepositoryService.findAll();
 
-        return pharmacyList.stream()
+        return restaurantList.stream()
                 .map(RestaurantDto::of)
                 .collect(Collectors.toList());
     }

@@ -21,21 +21,21 @@ class RestaurantRepositoryTest extends AbstractIntegrationContainerBaseTest {
     }
 
     @Test
-    void testSavePharmacy() {
+    void testSaveRestaurant() {
         // Given
-        Restaurant pharmacy = Restaurant.builder()
-                .name("Test Pharmacy")
+        Restaurant restaurant = Restaurant.builder()
+                .name("Test Restaurant")
                 .address("123 Main St")
                 .latitude(40.7128)
                 .longitude(74.0060)
                 .build();
 
         // When
-        restaurantRepository.save(pharmacy);
+        restaurantRepository.save(restaurant);
 
         // Then
-        Restaurant savedPharmacy = restaurantRepository.findById(pharmacy.getId()).orElse(null);
-        assertThat(savedPharmacy.getName()).isEqualTo("Test Pharmacy");
+        Restaurant savedRestaurant = restaurantRepository.findById(restaurant.getId()).orElse(null);
+        assertThat(savedRestaurant.getName()).isEqualTo("Test Restaurant");
     }
 
 

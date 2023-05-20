@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.7.3-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1    Database: pharmacy-recommendation
+-- Host: 127.0.0.1    Database: restaurant-recommendation
 -- ------------------------------------------------------
 -- Server version	10.7.3-MariaDB-1:10.7.3+maria~focal
 

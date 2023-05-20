@@ -22,7 +22,7 @@ public class RestaurantRepositoryService {
         Restaurant entity = restaurantRepository.findById(id).orElse(null);
 
         if(Objects.isNull(entity)) {
-            log.error("[PharmacyRepositoryService updateAddress] not found id: {}", id);
+            log.error("[RestaurantRepositoryService updateAddress] not found id: {}", id);
             return;
         }
 

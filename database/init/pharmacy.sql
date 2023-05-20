@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.7.3-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1    Database: pharmacy-recommendation
+-- Host: 127.0.0.1    Database: restaurant-recommendation
 -- ------------------------------------------------------
 -- Server version	10.7.3-MariaDB-1:10.7.3+maria~focal
 
@@ -16,7 +16,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pharmacy`
+-- Table structure for table `restaurant`
 --
 
 DROP TABLE IF EXISTS `restaurant`;
@@ -35,11 +35,11 @@ CREATE TABLE `restaurant` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pharmacy`
+-- Dumping data for table `restaurant`
 --
 
 LOCK TABLES `restaurant` WRITE;
-/*!40000 ALTER TABLE `pharmacy` DISABLE KEYS */;
+/*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
 INSERT INTO `restaurant` VALUES
 (1,'2022-10-17 23:46:34.982624','2022-10-17 23:46:34.982624',37.60894036,127.029052,'서울특별시 성북구 동소문로47길 12','호수온누리약국'),
 (2,'2022-10-17 23:46:35.025774','2022-10-17 23:46:35.025774',37.61040424,127.0569046,'서울특별시 성북구 화랑로 248','돌곶이온누리약국'),

@@ -18,13 +18,13 @@ class DirectionServiceTest extends AbstractIntegrationContainerBaseTest {
     @Autowired
     private RestaurantSearchService restaurantSearchService;
 
-    private List<RestaurantDto> pharmacyList;
+    private List<RestaurantDto> restaurantList;
 
     @BeforeEach
     void setup() {
-        pharmacyList = new ArrayList<>();
+        restaurantList = new ArrayList<>();
 
-        pharmacyList.addAll(
+        restaurantList.addAll(
                 List.of(
                         RestaurantDto.builder()
                                 .id(1L)

@@ -13,15 +13,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Builder
 public class DirectionRes {
 
-    private String restaurantName; // 약국명
+    private String restaurantName; // 음식점 명
 
-    private String restaurantAddress; // 약국 주소
+    private String restaurantAddress; // 음식점 주소
 
     private String directionUrl; // 길안내 url
 
     private String roadViewUrl; // 로드뷰 url
 
-    private String distance; // 고객 주소와 약국 주소와 의 거리
+    private String distance; // 고객 주소와 음식점 주소와 의 거리
 
     public static DirectionRes of(Direction directions, final String baseUrl, Base62Service base62Service) {
 

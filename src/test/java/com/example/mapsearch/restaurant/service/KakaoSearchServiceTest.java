@@ -15,7 +15,7 @@ public class KakaoSearchServiceTest extends AbstractIntegrationContainerBaseTest
 
     private static final String 주소 = "서울특별시 강남구 논현로 508";
     @Test
-    void testSearchPharmacy() {
+    void testSearchRestaurant() {
         // When
         final KakaoApiResponse kakaoApiResponse = service.requestAddressSearch(주소);
         // Then

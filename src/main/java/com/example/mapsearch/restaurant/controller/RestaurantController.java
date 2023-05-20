@@ -19,24 +19,24 @@ import java.util.stream.Collectors;
 
 @Controller
 @RestController
-@RequestMapping("/restaurant")
+@RequestMapping("/map")
 @RequiredArgsConstructor
 public class RestaurantController {
 
     private final RestaurantRepositoryService restaurantRepositoryService;
 
-    private final RestaurantRecommendationService recommendPharmacyService;
+    private final RestaurantRecommendationService recommendRestaurantService;
 
     private final RedisTemplateService redisTemplateService;
 
 
     @GetMapping("/recommend")
     public List<DirectionRes> getRecommendRestaurantList(@ModelAttribute DirectionReq req) {
-        return recommendPharmacyService.recommendRestaurant(req.getAddress());
+        return recommendRestaurantService.recommendRestaurant(req.getAddress());
     }
 
     @GetMapping("/list")
-    public List<Restaurant> getPharmacyList() {
+    public List<Restaurant> getRestaurantList() {
         return restaurantRepositoryService.findAll();
     }
 

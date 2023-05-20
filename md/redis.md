@@ -23,19 +23,19 @@ $ hset USER subkey value // Key(USER)의 subKey 의 값을 지정
 $ hget USER subkey // Key(USER)의 subKey 의 값을 조회
 ```
 
-### geopoints1 라는 자료구조에 pharmacy1, 2 각각 경도, 위도를 추가
+### geopoints1 라는 자료구조에 restaurant1, 2 각각 경도, 위도를 추가
 ```text
-$ geoadd geopoints1 127.0817 37.5505 pharmacy1
-$ geoadd geopoints1 127.0766 37.541 pharmacy2
+$ geoadd geopoints1 127.0817 37.5505 restaurant1
+$ geoadd geopoints1 127.0766 37.541 restaurant2
 // 두 지역의 거리를 리턴한다. 단위는 km
-$ geodist geopoints1 pharmacy1 pharmacy2 km
+$ geodist geopoints1 restaurant1 restaurant2 km
 ```
 
 ### Test Code 2
 ```text
-$ geoadd geopoints2 127.0569046 37.61040424 pharmacy1
-$ geoadd geopoints2 127.029052 37.60894036 pharmacy2
-$ geoadd geopoints2 127.236707811313 37.3825107393401 pharmacy3
+$ geoadd geopoints2 127.0569046 37.61040424 restaurant1
+$ geoadd geopoints2 127.029052 37.60894036 restaurant2
+$ geoadd geopoints2 127.236707811313 37.3825107393401 restaurant3
 // geopoints2 이름의 자료구조에서 주어진 위도, 경도 기준으로 반경 10km 이내에 가까운 약국 찾기
 •
 $ georadius geopoints2 127.037033003036 37.596065045809 10 km withdist withcoord asc count 3
