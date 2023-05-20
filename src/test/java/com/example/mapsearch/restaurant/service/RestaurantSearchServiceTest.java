@@ -1,11 +1,10 @@
-package com.example.mapsearch.pharmacy.service;
+package com.example.mapsearch.restaurant.service;
 
 import com.example.mapsearch.restaurant.cache.RedisTemplateService;
 import com.example.mapsearch.restaurant.dto.RestaurantDto;
 import com.example.mapsearch.restaurant.entity.Restaurant;
 import com.example.mapsearch.restaurant.service.RestaurantRepositoryService;
 import com.example.mapsearch.restaurant.service.RestaurantSearchService;
-import org.apache.commons.compress.utils.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-class PharmacySearchServiceTest  {
+class RestaurantSearchServiceTest {
 
     @InjectMocks
     private RestaurantSearchService restaurantSearchService;

@@ -11,14 +11,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Slf4j
-@Transactional
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class RestaurantRepositoryService {
 
     private final RestaurantRepository restaurantRepository;
 
-    @Transactional(readOnly = true)
     public void updateAddress(Long id, String address) {
         Restaurant entity = restaurantRepository.findById(id).orElse(null);
 
@@ -30,7 +29,7 @@ public class RestaurantRepositoryService {
         entity.updateAddress(address);
     }
 
-    @Transactional(readOnly = true)
+
     public List<Restaurant> findAll() {
         return restaurantRepository.findAll();
     }

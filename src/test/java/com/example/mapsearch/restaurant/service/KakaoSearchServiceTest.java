@@ -1,4 +1,4 @@
-package com.example.mapsearch.pharmacy.service;
+package com.example.mapsearch.restaurant.service;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
 import com.example.mapsearch.api.dto.KakaoApiResponse;

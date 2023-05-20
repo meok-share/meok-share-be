@@ -13,9 +13,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Builder
 public class DirectionRes {
 
-    private String pharmacyName; // 약국명
+    private String restaurantName; // 약국명
 
-    private String pharmacyAddress; // 약국 주소
+    private String restaurantAddress; // 약국 주소
 
     private String directionUrl; // 길안내 url
 
@@ -35,8 +35,8 @@ public class DirectionRes {
         log.info("direction params : {}", directions.roadViewUrl());
 
         return DirectionRes.builder()
-                .pharmacyName(directions.getTargetPharmacyName())
-                .pharmacyAddress(directions.getTargetAddress())
+                .restaurantName(directions.getTargetRestaurantName())
+                .restaurantAddress(directions.getTargetAddress())
                 .directionUrl(uriString)
                 .roadViewUrl(directions.roadViewUrl())
                 .distance(String.format("%.2f km", directions.getDistance()))

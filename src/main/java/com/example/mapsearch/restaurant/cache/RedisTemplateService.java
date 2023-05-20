@@ -35,7 +35,7 @@ public class RedisTemplateService {
     }
 
     public void save(RestaurantDto dto) {
-        if (ObjectUtils.isEmpty(dto)) {
+        if (ObjectUtils.isEmpty(dto) || ObjectUtils.isEmpty(dto.getId())) {
             log.error("required values must not be null");
             return;
         }
@@ -52,10 +52,12 @@ public class RedisTemplateService {
         try {
             Map<String, String> entries = hashOperations.entries(CACHE_KEY);
             List<RestaurantDto> list = new ArrayList<>();
+
             for (String s : entries.values()) {
                 RestaurantDto restaurantDto = deserializeRestaurant(s);
                 list.add(restaurantDto);
             }
+
             return list;
         } catch (Exception e) {
             log.error("Failed to find all restaurants: {}", e.getMessage());

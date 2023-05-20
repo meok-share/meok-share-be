@@ -37,7 +37,7 @@ public class RestaurantRecommendationService {
      * @param address
      * @return
      */
-    public List<DirectionRes> recommendPharmacy(String address) {
+    public List<DirectionRes> recommendRestaurant(String address) {
 
         KakaoApiResponse kakaoApiResponse = kakaoAddressSearchService.requestAddressSearch(address);
 

@@ -31,8 +31,8 @@ public class RestaurantController {
 
 
     @GetMapping("/recommend")
-    public List<DirectionRes> getRecommendPharmacyList(@ModelAttribute DirectionReq req) {
-        return recommendPharmacyService.recommendPharmacy(req.getAddress());
+    public List<DirectionRes> getRecommendRestaurantList(@ModelAttribute DirectionReq req) {
+        return recommendPharmacyService.recommendRestaurant(req.getAddress());
     }
 
     @GetMapping("/list")

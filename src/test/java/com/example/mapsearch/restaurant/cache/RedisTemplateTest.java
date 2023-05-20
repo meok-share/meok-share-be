@@ -1,4 +1,4 @@
-package com.example.mapsearch.pharmacy.cache;
+package com.example.mapsearch.restaurant.cache;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
 import org.junit.jupiter.api.Test;

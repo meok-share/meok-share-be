@@ -1,4 +1,4 @@
-package com.example.mapsearch.pharmacy.repository;
+package com.example.mapsearch.restaurant.repository;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
 import com.example.mapsearch.restaurant.entity.Restaurant;

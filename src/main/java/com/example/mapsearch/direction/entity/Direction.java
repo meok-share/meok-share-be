@@ -32,7 +32,7 @@ public class Direction extends BaseTimeEntity {
     private double inputLongitude;
 
     // 약국의 주소 정보
-    private String targetPharmacyName;
+    private String targetRestaurantName;
 
     private String targetAddress;
 
@@ -49,7 +49,7 @@ public class Direction extends BaseTimeEntity {
 
     public String distanceUrlParam() {
         return DIRECTION_BASE_URL + String.join(","
-                , targetPharmacyName
+                , targetRestaurantName
                 , String.valueOf(targetLatitude)
                 , String.valueOf(targetLongitude)
         );

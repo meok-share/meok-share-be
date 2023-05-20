@@ -55,18 +55,18 @@ public class DirectionService {
         if(Objects.isNull(documentDto)) return Collections.emptyList();
 
         return restaurantSearchService.searchPharmacyList()
-                .stream().map(pharmacyDto ->
+                .stream().map(restaurantDto ->
                         Direction.builder()
                                 .inputAddress(documentDto.getAddressName())
                                 .inputLatitude(documentDto.getLatitude())
                                 .inputLongitude(documentDto.getLongitude())
-                                .targetPharmacyName(pharmacyDto.getRestaurantName())
-                                .targetAddress(pharmacyDto.getRestaurantAddress())
-                                .targetLatitude(pharmacyDto.getLatitude())
-                                .targetLongitude(pharmacyDto.getLongitude())
+                                .targetRestaurantName(restaurantDto.getRestaurantName())
+                                .targetAddress(restaurantDto.getRestaurantAddress())
+                                .targetLatitude(restaurantDto.getLatitude())
+                                .targetLongitude(restaurantDto.getLongitude())
                                 .distance(
                                         calculateDistance(documentDto.getLatitude(), documentDto.getLongitude(),
-                                                pharmacyDto.getLatitude(), pharmacyDto.getLongitude()))
+                                                restaurantDto.getLatitude(), restaurantDto.getLongitude()))
                                 .build())
                 .filter(direction -> {
                     log.info("direction: {}", direction);
@@ -93,14 +93,14 @@ public class DirectionService {
         if(Objects.isNull(inputDocumentDto)) return Collections.emptyList();
 
         return kakaoCategorySearchService
-                .requestPharmacyCategorySearch(inputDocumentDto.getLatitude(), inputDocumentDto.getLongitude(), RADIUS_KM)
+                .requestRestaurantCategorySearch(inputDocumentDto.getLatitude(), inputDocumentDto.getLongitude(), RADIUS_KM)
                 .getDocumentList()
                 .stream().map(resultDocumentDto ->
                         Direction.builder()
                                 .inputAddress(inputDocumentDto.getAddressName())
                                 .inputLatitude(inputDocumentDto.getLatitude())
                                 .inputLongitude(inputDocumentDto.getLongitude())
-                                .targetPharmacyName(resultDocumentDto.getPlaceName())
+                                .targetRestaurantName(resultDocumentDto.getPlaceName())
                                 .targetAddress(resultDocumentDto.getAddressName())
                                 .targetLatitude(resultDocumentDto.getLatitude())
                                 .targetLongitude(resultDocumentDto.getLongitude())
