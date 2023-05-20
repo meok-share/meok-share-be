@@ -1,4 +1,4 @@
-package com.example.mapsearch.pharmacy.controller.response;
+package com.example.mapsearch.restaurant.controller.response;
 
 
 import com.example.mapsearch.direction.entity.Direction;

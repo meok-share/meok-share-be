@@ -1,4 +1,4 @@
-package com.example.mapsearch.pharmacy.entity;
+package com.example.mapsearch.restaurant.entity;
 
 import com.example.mapsearch.common.BaseTimeEntity;
 import lombok.AllArgsConstructor;
@@ -16,21 +16,21 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pharmacy extends BaseTimeEntity {
+public class Restaurant extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String pharmacyName;
+    private String name;
 
-    private String pharmacyAddress;
+    private String address;
 
     private double latitude;
 
     private double longitude;
 
-    public void updateAddress(String pharmacyAddress) {
-        this.pharmacyAddress = pharmacyAddress;
+    public void updateAddress(String address) {
+        this.address = address;
     }
 
 }

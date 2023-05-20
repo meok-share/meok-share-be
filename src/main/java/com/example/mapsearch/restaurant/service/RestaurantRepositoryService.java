@@ -1,7 +1,7 @@
-package com.example.mapsearch.pharmacy.service;
+package com.example.mapsearch.restaurant.service;
 
-import com.example.mapsearch.pharmacy.entity.Pharmacy;
-import com.example.mapsearch.pharmacy.repository.PharmacyRepository;
+import com.example.mapsearch.restaurant.entity.Restaurant;
+import com.example.mapsearch.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,13 @@ import java.util.Objects;
 @Transactional
 @Service
 @RequiredArgsConstructor
-public class PharmacyRepositoryService {
+public class RestaurantRepositoryService {
 
-    private final PharmacyRepository pharmacyRepository;
+    private final RestaurantRepository restaurantRepository;
 
     @Transactional(readOnly = true)
     public void updateAddress(Long id, String address) {
-        Pharmacy entity = pharmacyRepository.findById(id).orElse(null);
+        Restaurant entity = restaurantRepository.findById(id).orElse(null);
 
         if(Objects.isNull(entity)) {
             log.error("[PharmacyRepositoryService updateAddress] not found id: {}", id);
@@ -31,7 +31,7 @@ public class PharmacyRepositoryService {
     }
 
     @Transactional(readOnly = true)
-    public List<Pharmacy> findAll() {
-        return pharmacyRepository.findAll();
+    public List<Restaurant> findAll() {
+        return restaurantRepository.findAll();
     }
 }

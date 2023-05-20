@@ -1,8 +1,8 @@
 package com.example.mapsearch.direction.service;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
-import com.example.mapsearch.pharmacy.dto.PharmacyDto;
-import com.example.mapsearch.pharmacy.service.PharmacySearchService;
+import com.example.mapsearch.restaurant.dto.RestaurantDto;
+import com.example.mapsearch.restaurant.service.RestaurantSearchService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DirectionServiceTest extends AbstractIntegrationContainerBaseTest {
 
     @Autowired
     private DirectionService directionService;
 
     @Autowired
-    private PharmacySearchService pharmacySearchService;
+    private RestaurantSearchService restaurantSearchService;
 
-    private List<PharmacyDto> pharmacyList;
+    private List<RestaurantDto> pharmacyList;
 
     @BeforeEach
     void setup() {
@@ -28,17 +26,17 @@ class DirectionServiceTest extends AbstractIntegrationContainerBaseTest {
 
         pharmacyList.addAll(
                 List.of(
-                        PharmacyDto.builder()
+                        RestaurantDto.builder()
                                 .id(1L)
-                                .pharmacyName("돌곶이온누리약국")
-                                .pharmacyAddress("주소1")
+                                .restaurantName("돌곶이온누리약국")
+                                .restaurantAddress("주소1")
                                 .latitude(37.61040424)
                                 .longitude(127.0569046)
                                 .build(),
-                        PharmacyDto.builder()
+                        RestaurantDto.builder()
                                 .id(2L)
-                                .pharmacyName("호수온누리약국")
-                                .pharmacyAddress("주소2")
+                                .restaurantName("호수온누리약국")
+                                .restaurantAddress("주소2")
                                 .latitude(37.60894036)
                                 .longitude(127.029052)
                                 .build()

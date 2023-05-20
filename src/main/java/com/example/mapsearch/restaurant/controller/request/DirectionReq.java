@@ -1,4 +1,4 @@
-package com.example.mapsearch.pharmacy.controller.request;
+package com.example.mapsearch.restaurant.controller.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

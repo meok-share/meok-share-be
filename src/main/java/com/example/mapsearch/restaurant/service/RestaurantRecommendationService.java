@@ -1,11 +1,11 @@
-package com.example.mapsearch.pharmacy.service;
+package com.example.mapsearch.restaurant.service;
 
 import com.example.mapsearch.api.dto.Document;
 import com.example.mapsearch.api.dto.KakaoApiResponse;
 import com.example.mapsearch.api.service.KakaoAddressSearchService;
 import com.example.mapsearch.direction.entity.Direction;
 import com.example.mapsearch.direction.service.Base62Service;
-import com.example.mapsearch.pharmacy.controller.response.DirectionRes;
+import com.example.mapsearch.restaurant.controller.response.DirectionRes;
 import com.example.mapsearch.direction.service.DirectionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PharmacyRecommendationService {
+public class RestaurantRecommendationService {
 
     private final KakaoAddressSearchService kakaoAddressSearchService;
 

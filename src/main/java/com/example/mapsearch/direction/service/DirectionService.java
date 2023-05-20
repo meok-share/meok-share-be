@@ -4,7 +4,7 @@ import com.example.mapsearch.api.dto.Document;
 import com.example.mapsearch.api.service.KakaoCategorySearchService;
 import com.example.mapsearch.direction.entity.Direction;
 import com.example.mapsearch.direction.repository.DirectionRepository;
-import com.example.mapsearch.pharmacy.service.PharmacySearchService;
+import com.example.mapsearch.restaurant.service.RestaurantSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class DirectionService {
     // 반경 10km 이내
     private static final double RADIUS_KM = 10.0;
 
-    private final PharmacySearchService pharmacySearchService;
+    private final RestaurantSearchService restaurantSearchService;
 
     private final DirectionRepository directionRepository;
 
@@ -54,14 +54,14 @@ public class DirectionService {
     public List<Direction> buildDirectionList(Document documentDto) {
         if(Objects.isNull(documentDto)) return Collections.emptyList();
 
-        return pharmacySearchService.searchPharmacyList()
+        return restaurantSearchService.searchPharmacyList()
                 .stream().map(pharmacyDto ->
                         Direction.builder()
                                 .inputAddress(documentDto.getAddressName())
                                 .inputLatitude(documentDto.getLatitude())
                                 .inputLongitude(documentDto.getLongitude())
-                                .targetPharmacyName(pharmacyDto.getPharmacyName())
-                                .targetAddress(pharmacyDto.getPharmacyAddress())
+                                .targetPharmacyName(pharmacyDto.getRestaurantName())
+                                .targetAddress(pharmacyDto.getRestaurantAddress())
                                 .targetLatitude(pharmacyDto.getLatitude())
                                 .targetLongitude(pharmacyDto.getLongitude())
                                 .distance(
