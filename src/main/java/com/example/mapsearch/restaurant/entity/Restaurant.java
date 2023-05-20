@@ -21,16 +21,16 @@ public class Restaurant extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String restaurantName;
 
-    private String address;
+    private String restaurantAddress;
 
     private double latitude;
 
     private double longitude;
 
     public void updateAddress(String address) {
-        this.address = address;
+        this.restaurantAddress = address;
     }
 
 }

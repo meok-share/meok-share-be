@@ -25,8 +25,8 @@ public class RestaurantDto {
     public static RestaurantDto of(Restaurant restaurant) {
         return RestaurantDto.builder()
                 .id(restaurant.getId())
-                .restaurantName(restaurant.getName())
-                .restaurantAddress(restaurant.getAddress())
+                .restaurantName(restaurant.getRestaurantName())
+                .restaurantAddress(restaurant.getRestaurantAddress())
                 .latitude(restaurant.getLatitude())
                 .longitude(restaurant.getLongitude())
                 .build();

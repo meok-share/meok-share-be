@@ -2,7 +2,6 @@ package com.example.mapsearch.restaurant.repository;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
 import com.example.mapsearch.restaurant.entity.Restaurant;
-import com.example.mapsearch.restaurant.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,8 +23,8 @@ class RestaurantRepositoryTest extends AbstractIntegrationContainerBaseTest {
     void testSaveRestaurant() {
         // Given
         Restaurant restaurant = Restaurant.builder()
-                .name("Test Restaurant")
-                .address("123 Main St")
+                .restaurantName("Test Restaurant")
+                .restaurantAddress("123 Main St")
                 .latitude(40.7128)
                 .longitude(74.0060)
                 .build();
@@ -35,7 +34,7 @@ class RestaurantRepositoryTest extends AbstractIntegrationContainerBaseTest {
 
         // Then
         Restaurant savedRestaurant = restaurantRepository.findById(restaurant.getId()).orElse(null);
-        assertThat(savedRestaurant.getName()).isEqualTo("Test Restaurant");
+        assertThat(savedRestaurant.getRestaurantName()).isEqualTo("Test Restaurant");
     }
 
 
@@ -43,20 +42,20 @@ class RestaurantRepositoryTest extends AbstractIntegrationContainerBaseTest {
     void TestSaveAll() {
         // Given
         Restaurant restaurant1 = Restaurant.builder()
-                .name("Test Restaurant 1")
-                .address("123 Main St")
+                .restaurantName("Test Restaurant 1")
+                .restaurantAddress("123 Main St")
                 .latitude(40.7128)
                 .longitude(74.0060)
                 .build();
         Restaurant restaurant2 = Restaurant.builder()
-                .name("Test Restaurant 2")
-                .address("123 Main St")
+                .restaurantName("Test Restaurant 2")
+                .restaurantAddress("123 Main St")
                 .latitude(40.7128)
                 .longitude(74.0060)
                 .build();
         Restaurant restaurant3 = Restaurant.builder()
-                .name("Test Restaurant 3")
-                .address("123 Main St")
+                .restaurantName("Test Restaurant 3")
+                .restaurantAddress("123 Main St")
                 .latitude(40.7128)
                 .longitude(74.0060)
                 .build();

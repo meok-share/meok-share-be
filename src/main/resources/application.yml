@@ -56,4 +56,21 @@ spring:
   config:
     activate:
       on-profile: prod
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://map-recommendation-database:3306/map-recommendation
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  redis:
+    host: map-recommendation-redis
+    port: 6379
+  jpa:
+    hibernate:
+      ddl-auto: validate # prod 배포시 validate
+    show-sql: true
+
+map:
+  recommendation:
+    base:
+      url: http://localhost/dir/ # aws ec2 ip 할당 받은 후 변경 예정
 
