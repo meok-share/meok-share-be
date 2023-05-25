@@ -1,4 +1,4 @@
-package com.example.mapsearch.restaurant.entity;
+package com.example.mapsearch.domain.restaurant.entity;
 
 import com.example.mapsearch.common.BaseTimeEntity;
 import lombok.AllArgsConstructor;

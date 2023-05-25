@@ -1,6 +1,6 @@
-package com.example.mapsearch.direction.controller;
+package com.example.mapsearch.domain.direction.controller;
 
-import com.example.mapsearch.direction.service.DirectionService;
+import com.example.mapsearch.domain.direction.service.DirectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

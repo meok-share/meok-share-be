@@ -1,7 +1,8 @@
 package com.example.mapsearch.restaurant.repository;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
-import com.example.mapsearch.restaurant.entity.Restaurant;
+import com.example.mapsearch.domain.restaurant.entity.Restaurant;
+import com.example.mapsearch.domain.restaurant.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

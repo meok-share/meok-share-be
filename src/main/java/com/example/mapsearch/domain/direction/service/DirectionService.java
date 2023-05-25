@@ -1,10 +1,10 @@
-package com.example.mapsearch.direction.service;
+package com.example.mapsearch.domain.direction.service;
 
 import com.example.mapsearch.api.dto.Document;
 import com.example.mapsearch.api.service.KakaoCategorySearchService;
-import com.example.mapsearch.direction.entity.Direction;
-import com.example.mapsearch.direction.repository.DirectionRepository;
-import com.example.mapsearch.restaurant.service.RestaurantSearchService;
+import com.example.mapsearch.domain.direction.entity.Direction;
+import com.example.mapsearch.domain.direction.repository.DirectionRepository;
+import com.example.mapsearch.domain.restaurant.service.RestaurantSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,8 @@
 package com.example.mapsearch.restaurant.cache;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
-import com.example.mapsearch.restaurant.dto.RestaurantDto;
+import com.example.mapsearch.domain.restaurant.cache.RedisTemplateService;
+import com.example.mapsearch.domain.restaurant.dto.RestaurantDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

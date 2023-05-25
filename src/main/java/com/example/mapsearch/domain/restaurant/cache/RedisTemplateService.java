@@ -1,6 +1,6 @@
-package com.example.mapsearch.restaurant.cache;
+package com.example.mapsearch.domain.restaurant.cache;
 
-import com.example.mapsearch.restaurant.dto.RestaurantDto;
+import com.example.mapsearch.domain.restaurant.dto.RestaurantDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

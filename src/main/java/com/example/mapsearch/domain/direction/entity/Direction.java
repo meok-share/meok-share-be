@@ -1,4 +1,4 @@
-package com.example.mapsearch.direction.entity;
+package com.example.mapsearch.domain.direction.entity;
 
 import com.example.mapsearch.common.BaseTimeEntity;
 import lombok.AllArgsConstructor;

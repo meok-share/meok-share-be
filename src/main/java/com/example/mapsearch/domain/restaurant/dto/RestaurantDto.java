@@ -1,6 +1,6 @@
-package com.example.mapsearch.restaurant.dto;
+package com.example.mapsearch.domain.restaurant.dto;
 
-import com.example.mapsearch.restaurant.entity.Restaurant;
+import com.example.mapsearch.domain.restaurant.entity.Restaurant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

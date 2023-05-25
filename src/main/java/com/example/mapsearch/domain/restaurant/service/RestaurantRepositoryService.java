@@ -1,7 +1,7 @@
-package com.example.mapsearch.restaurant.service;
+package com.example.mapsearch.domain.restaurant.service;
 
-import com.example.mapsearch.restaurant.entity.Restaurant;
-import com.example.mapsearch.restaurant.repository.RestaurantRepository;
+import com.example.mapsearch.domain.restaurant.entity.Restaurant;
+import com.example.mapsearch.domain.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

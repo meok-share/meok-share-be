@@ -1,12 +1,12 @@
-package com.example.mapsearch.restaurant.service;
+package com.example.mapsearch.domain.restaurant.service;
 
 import com.example.mapsearch.api.dto.Document;
 import com.example.mapsearch.api.dto.KakaoApiResponse;
 import com.example.mapsearch.api.service.KakaoAddressSearchService;
-import com.example.mapsearch.direction.entity.Direction;
-import com.example.mapsearch.direction.service.Base62Service;
-import com.example.mapsearch.direction.service.DirectionService;
-import com.example.mapsearch.restaurant.controller.response.DirectionRes;
+import com.example.mapsearch.domain.direction.entity.Direction;
+import com.example.mapsearch.domain.direction.service.Base62Service;
+import com.example.mapsearch.domain.direction.service.DirectionService;
+import com.example.mapsearch.domain.restaurant.controller.response.DirectionRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,9 +50,6 @@ public class RestaurantRecommendationService {
         final Document document = kakaoApiResponse
                 .getDocumentList()
                 .get(0);
-
-        // 공공기관 약국 데이터 및 거리계산 알고리즘 이용
-        // List<Direction> directionList = directionService.buildDirectionList(document);
 
         // kakao 카테고리를 이용한 장소 검색 api 허용
         final List<Direction> directionList = directionService.buildDirectionListByCategoryApi(document);

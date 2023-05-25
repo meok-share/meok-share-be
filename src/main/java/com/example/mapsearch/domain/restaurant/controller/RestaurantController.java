@@ -1,12 +1,12 @@
-package com.example.mapsearch.restaurant.controller;
+package com.example.mapsearch.domain.restaurant.controller;
 
-import com.example.mapsearch.restaurant.cache.RedisTemplateService;
-import com.example.mapsearch.restaurant.controller.request.DirectionReq;
-import com.example.mapsearch.restaurant.controller.response.DirectionRes;
-import com.example.mapsearch.restaurant.dto.RestaurantDto;
-import com.example.mapsearch.restaurant.entity.Restaurant;
-import com.example.mapsearch.restaurant.service.RestaurantRecommendationService;
-import com.example.mapsearch.restaurant.service.RestaurantRepositoryService;
+import com.example.mapsearch.domain.restaurant.cache.RedisTemplateService;
+import com.example.mapsearch.domain.restaurant.dto.RestaurantDto;
+import com.example.mapsearch.domain.restaurant.entity.Restaurant;
+import com.example.mapsearch.domain.restaurant.service.RestaurantRecommendationService;
+import com.example.mapsearch.domain.restaurant.service.RestaurantRepositoryService;
+import com.example.mapsearch.domain.restaurant.controller.request.DirectionReq;
+import com.example.mapsearch.domain.restaurant.controller.response.DirectionRes;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

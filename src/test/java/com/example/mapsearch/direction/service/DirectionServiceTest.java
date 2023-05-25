@@ -1,8 +1,9 @@
 package com.example.mapsearch.direction.service;
 
 import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
-import com.example.mapsearch.restaurant.dto.RestaurantDto;
-import com.example.mapsearch.restaurant.service.RestaurantSearchService;
+import com.example.mapsearch.domain.direction.service.DirectionService;
+import com.example.mapsearch.domain.restaurant.dto.RestaurantDto;
+import com.example.mapsearch.domain.restaurant.service.RestaurantSearchService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

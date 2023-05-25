@@ -1,8 +1,8 @@
-package com.example.mapsearch.restaurant.controller.response;
+package com.example.mapsearch.domain.restaurant.controller.response;
 
 
-import com.example.mapsearch.direction.entity.Direction;
-import com.example.mapsearch.direction.service.Base62Service;
+import com.example.mapsearch.domain.direction.entity.Direction;
+import com.example.mapsearch.domain.direction.service.Base62Service;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

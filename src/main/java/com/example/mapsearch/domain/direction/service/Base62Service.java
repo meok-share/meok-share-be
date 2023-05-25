@@ -1,4 +1,4 @@
-package com.example.mapsearch.direction.service;
+package com.example.mapsearch.domain.direction.service;
 
 import io.seruco.encoding.base62.Base62;
 import lombok.RequiredArgsConstructor;
