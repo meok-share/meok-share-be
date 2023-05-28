@@ -6,7 +6,11 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
-
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
 kakao:
   rest:
     api:

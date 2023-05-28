@@ -1,6 +1,6 @@
-package com.example.mapsearch.restaurant.cache;
+package com.example.mapsearch.domain.restaurant.cache;
 
-import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
+import com.example.mapsearch.integration.AbstractIntegrationContainerBaseTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;

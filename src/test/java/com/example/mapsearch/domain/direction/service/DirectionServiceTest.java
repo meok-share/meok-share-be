@@ -1,7 +1,6 @@
-package com.example.mapsearch.direction.service;
+package com.example.mapsearch.domain.direction.service;
 
-import com.example.mapsearch.AbstractIntegrationContainerBaseTest;
-import com.example.mapsearch.domain.direction.service.DirectionService;
+import com.example.mapsearch.integration.AbstractIntegrationContainerBaseTest;
 import com.example.mapsearch.domain.restaurant.dto.RestaurantDto;
 import com.example.mapsearch.domain.restaurant.service.RestaurantSearchService;
 import org.junit.jupiter.api.BeforeEach;

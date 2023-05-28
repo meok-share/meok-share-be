@@ -1,4 +1,4 @@
-package com.example.mapsearch;
+package com.example.mapsearch.integration;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.containers.GenericContainer;

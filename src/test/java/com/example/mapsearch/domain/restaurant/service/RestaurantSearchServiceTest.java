@@ -1,4 +1,4 @@
-package com.example.mapsearch.restaurant.service;
+package com.example.mapsearch.domain.restaurant.service;
 
 import com.example.mapsearch.domain.restaurant.cache.RedisTemplateService;
 import com.example.mapsearch.domain.restaurant.dto.RestaurantDto;
