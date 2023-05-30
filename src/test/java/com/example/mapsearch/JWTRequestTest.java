@@ -6,15 +6,20 @@ import com.example.mapsearch.domain.login.dto.LoginRes;
 import com.example.mapsearch.domain.login.entity.MUsers;
 import com.example.mapsearch.domain.login.repository.UserRepository;
 import com.example.mapsearch.integration.WebIntefrationTest;
-import org.apache.http.HttpHeaders;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class JWTRequestTest extends WebIntefrationTest {
 
@@ -23,6 +28,13 @@ class JWTRequestTest extends WebIntefrationTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    private static final String BEARER = "Bearer ";
+
+    private static final String AUTH_TOKEN = "auth_token";
+
+    private static final String REFRESH_TOKEN = "refresh_token";
+
 
     private final MUsers USER = MUsers.builder()
             .userId(0L)
@@ -39,18 +51,82 @@ class JWTRequestTest extends WebIntefrationTest {
         loginService.join(USER);
     }
 
-    @Test
-    @DisplayName("hello 메세지를 가져온다")
-    void hello_메세지를_가져온다() {
+    private TokenBox getToken() {
         // given
         RestTemplate client = new RestTemplate();
         // when
-        HttpEntity<LoginReq> body = new HttpEntity<>(new LoginReq("tkaqkeldk@naver.com", "1234"));
+        HttpEntity<LoginReq> body = new HttpEntity<>(new LoginReq("tkaqkeldk@naver.com", "1234", null));
         final ResponseEntity<LoginRes> response = client.exchange(uri("/login"), HttpMethod.POST, body, LoginRes.class);
+        final String authToken = response.getHeaders().get(AUTH_TOKEN).get(0);
+        final String refreshToken = response.getHeaders().get(REFRESH_TOKEN).get(0);
 
-        // then
-        System.out.println("response.getHeaders() = " + response.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0));
-        System.out.println("response = " + response.getBody());
+        return TokenBox.builder()
+                .authToken(authToken)
+                .refreshToken(refreshToken)
+                .build();
+    }
+
+    private TokenBox getRefreshToken(String token) {
+        // given
+        RestTemplate client = new RestTemplate();
+        // when
+        HttpEntity<LoginReq> body = new HttpEntity<>(new LoginReq(null, null, token));
+        final ResponseEntity<LoginRes> response = client.exchange(uri("/login"), HttpMethod.POST, body, LoginRes.class);
+        final String authToken = response.getHeaders().get(AUTH_TOKEN).get(0);
+        final String refreshToken = response.getHeaders().get(REFRESH_TOKEN).get(0);
+
+        return TokenBox.builder()
+                .authToken(authToken)
+                .refreshToken(refreshToken)
+                .build();
+    }
+
+    @Test
+    @DisplayName("로그인_후_토큰을_받는다")
+    void loginAfterGetToken() {
+
+        // Given
+        final TokenBox token = getToken();
+
+        RestTemplate client = new RestTemplate();
+
+        HttpHeaders header = new HttpHeaders();
+        header.add(HttpHeaders.AUTHORIZATION, BEARER + token.getAuthToken());
+
+        // When
+        HttpEntity body = new HttpEntity<>(null, header);
+        final ResponseEntity<String> exchange = client.exchange(uri("/login/hello"), HttpMethod.GET, body, String.class);
+
+        // Then
+        assertEquals("hello", exchange.getBody());
+
+    }
+
+    @Test
+    @DisplayName("토큰 만료 테스트")
+    void tokenExpireTest() throws InterruptedException {
+        // given
+        TokenBox token = getToken();
+        Thread.sleep(3000);
+
+        HttpHeaders header = new HttpHeaders();
+        header.add(HttpHeaders.AUTHORIZATION, BEARER + token.getAuthToken());
+
+        RestTemplate client = new RestTemplate();
+        assertThrows(Exception.class, () -> {
+            HttpEntity body = new HttpEntity<>(null, header);
+            ResponseEntity<String> res1 = client.exchange(uri("/login/hello"), HttpMethod.GET, body, String.class);
+        });
+
+        token = getRefreshToken(token.getRefreshToken());
+
+        HttpHeaders header2 = new HttpHeaders();
+        header2.add(HttpHeaders.AUTHORIZATION, BEARER + token.getAuthToken());
+        HttpEntity body = new HttpEntity<>(null, header2);
+        ResponseEntity<String> res2 = client.exchange(uri("/login/hello"), HttpMethod.GET, body, String.class);
+
+
+        assertEquals("hello", res2.getBody());
     }
 
 }

@@ -55,6 +55,9 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
+	// test lombok
+	testImplementation 'org.projectlombok:lombok'
+
 	// mariadb
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 

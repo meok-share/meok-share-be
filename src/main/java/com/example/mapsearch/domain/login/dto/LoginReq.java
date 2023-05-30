@@ -17,4 +17,6 @@ public class LoginReq {
     @NotNull
     private String password;
 
+    private String refreshToken;
+
 }

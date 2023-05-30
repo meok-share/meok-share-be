@@ -22,8 +22,6 @@ import java.io.IOException;
 /**
  * 매번 request 가 올때마다 token 을 검사후 security ContextHolder 에 user 정보를 채워주는 역할
  */
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class JWTCheckFilter extends BasicAuthenticationFilter {
 
     private LoginService loginService;
@@ -34,7 +32,9 @@ public class JWTCheckFilter extends BasicAuthenticationFilter {
     }
 
     @Override
-    protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain) throws IOException, ServletException {
+    protected void doFilterInternal(final HttpServletRequest request,
+                                    final HttpServletResponse response,
+                                    final FilterChain chain) throws IOException, ServletException {
         String bearer = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (bearer == null && !bearer.startsWith("Bearer ")) {
             chain.doFilter(request, response);
@@ -42,15 +42,20 @@ public class JWTCheckFilter extends BasicAuthenticationFilter {
         }
 
         String token = bearer.substring("Bearer ".length());
-        final VerifyResult result = JWTUtil.verify(token);
+        VerifyResult result = JWTUtil.verify(token);
 
         if (result.isSuccess()) {
             MUsers user = loginService.loadUserByUsername(result.getUserEmail());
-            final UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getAuthorities());
+
+            final UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(
+                    user.getEmail(), null, user.getAuthorities()
+            );
+
             SecurityContextHolder.getContext().setAuthentication(userToken);
             chain.doFilter(request, response);
         } else {
             throw new AuthenticationException("Token is not valid");
         }
     }
+
 }

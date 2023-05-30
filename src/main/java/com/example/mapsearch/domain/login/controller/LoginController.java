@@ -5,6 +5,7 @@ import com.example.mapsearch.domain.login.dto.LoginReq;
 import com.example.mapsearch.domain.login.dto.LoginRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,11 @@ public class LoginController {
     public ResponseEntity<LoginRes> login(@RequestBody LoginReq loginRequest) {
         final LoginRes login = loginService.login(loginRequest);
         return ResponseEntity.ok(login);
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
     }
 
 }
