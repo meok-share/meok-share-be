@@ -29,6 +29,9 @@ kakao:
     api:
       key: ${KAKAO-REST-API-KEY}
 
+jwt:
+  expiration: 86400000 # 1 day
+
 # ...
 
 ---

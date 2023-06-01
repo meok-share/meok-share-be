@@ -19,14 +19,13 @@
 -- Table structure for table `direction`
 --
 
-DROP TABLE IF EXISTS `meok_user`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `m_user` (
-  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_date` datetime(6) DEFAULT NULL,
   `modified_date` datetime(6) DEFAULT NULL,
-  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -37,7 +36,7 @@ CREATE TABLE `m_user` (
 -- Dumping data for table `direction`
 --
 
-LOCK TABLES `m_users` WRITE;
+LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `direction` DISABLE KEYS */;
 /*!40000 ALTER TABLE `direction` ENABLE KEYS */;
 UNLOCK TABLES;

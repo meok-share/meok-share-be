@@ -19,3 +19,5 @@ map:
   recommendation:
     base:
       url: http://localhost:8080/dir/
+jwt:
+  expiration: 86400000 # 1 day
