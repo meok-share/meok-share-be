@@ -2,11 +2,10 @@ package com.example.mapsearch.domain.login.service;
 
 import com.example.mapsearch.config.provider.JwtTokenProvider;
 import com.example.mapsearch.domain.login.dto.LoginReq;
+import com.example.mapsearch.domain.login.dto.Tokens;
 import com.example.mapsearch.domain.login.entity.User;
 import com.example.mapsearch.domain.login.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,15 +23,14 @@ public class LoginService {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-
-    public String login(LoginReq req) {
+    public Tokens login(LoginReq req) {
         User member = findUser(req);
 
         if (!passwordEncoder.matches(req.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
 
-        return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
+        return jwtTokenProvider.createTokens(member.getUsername(), member.getRoles());
     }
 
     private User findUser(final LoginReq req) {

@@ -1,12 +1,11 @@
 package com.example.mapsearch.config.provider;
 
+import com.example.mapsearch.domain.login.dto.Tokens;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
-import org.apache.http.auth.AUTH;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +26,9 @@ public class JwtTokenProvider {
 
     private static final String X_AUTH_TOKEN = "X-AUTH-TOKEN";
 
-    private long tokenValidTime = 60 * 60 * 1000L * 24;
+    private long tokenValidTime = 60 * 60 * 1000L * 24; // 1 days
+
+    private long refreshTokenValidTime = 60 * 60 * 1000L * 24 * 7; // 7 days
 
     private final UserDetailsService userDetailsService;
 
@@ -38,16 +39,26 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String userPk, List<String> roles) {
-        Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
-        claims.put("roles", roles); // 정보는 key / value 쌍으로 저장된다.
+    public Tokens createTokens(String userPk, List<String> roles) {
         Date now = new Date();
+        Date accessTokenExpiryDate = new Date(now.getTime() + tokenValidTime);
+        Date refreshTokenExpiryDate = new Date(now.getTime() + refreshTokenValidTime);
+
+        String accessToken = generateToken(userPk, roles, accessTokenExpiryDate);
+        String refreshToken = generateToken(userPk, roles, refreshTokenExpiryDate);
+
+        return new Tokens(accessToken, refreshToken);
+    }
+
+    private String generateToken(String userPk, List<String> roles, Date expiryDate) {
+        Claims claims = Jwts.claims().setSubject(userPk);
+        claims.put("roles", roles);
+
         return Jwts.builder()
-                .setClaims(claims) // 정보 저장
-                .setIssuedAt(now) // 토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + tokenValidTime)) // set Expire Time
-                .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
-                // signature 에 들어갈 secret 값 세팅
+                .setClaims(claims)
+                .setIssuedAt(new Date())
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
 
