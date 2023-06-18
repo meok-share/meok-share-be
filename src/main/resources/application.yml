@@ -102,7 +102,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate # prod 배포시 validate
+      ddl-auto: create # prod 배포시 validate
     show-sql: true
   mvc:
     pathmatch:
