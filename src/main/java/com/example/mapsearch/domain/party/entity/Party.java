@@ -5,14 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 @Getter
@@ -23,9 +20,8 @@ public class Party extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "party_member_id")
-    private List<PartyMember> partyMembers;
+    @Embedded
+    private PartyMembers partyMembers = new PartyMembers();
 
     private String hostNickName;
 
@@ -41,11 +37,11 @@ public class Party extends BaseTimeEntity {
 
     private int partySize;
 
-    private boolean isPartyEnd;
+    private int currentPartySize;
 
     @Builder
     public Party(final Long id,
-                 final List<PartyMember> partyMembers,
+                 final PartyMembers partyMembers,
                  final String hostNickName,
                  final String longitude,
                  final String latitude,
@@ -62,29 +58,29 @@ public class Party extends BaseTimeEntity {
         this.partyComment = partyComment;
         this.partyDate = partyDate;
         this.partySize = partySize;
+        this.currentPartySize = getCurrentPartySize();
     }
 
     public void addPartyMember(final PartyMember member) {
-        validate(member);
-        this.partyMembers.add(member);
+        this.partyMembers.add(member, partySize);
+        this.currentPartySize = getCurrentPartySize();
     }
 
-    private void validate(final PartyMember member) {
-        if (isFullMember()) {
-            throw new IllegalArgumentException("파티 인원이 가득 찼습니다.");
-        }
+    public void removePartyMember(final PartyMember member) {
+        this.partyMembers.remove(member);
+        this.currentPartySize = getCurrentPartySize();
+    }
 
-        boolean nicknameExists = this.partyMembers.stream()
-                .map(PartyMember::getNickName)
-                .anyMatch(nickName -> nickName.equals(member.getNickName()));
-
-        if (nicknameExists) {
-            throw new IllegalArgumentException("이미 가입된 멤버 입니다.");
-        }
+    public int getCurrentPartySize() {
+        return partyMembers.size();
     }
 
     public boolean isFullMember() {
-        return this.partyMembers.size() == this.partySize;
+        return getCurrentPartySize() == partySize;
+    }
+
+    public List<PartyMember> getPartyMemberAll() {
+        return partyMembers.getPartyMembers();
     }
 
 }

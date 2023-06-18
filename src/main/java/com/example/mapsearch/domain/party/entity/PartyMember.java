@@ -26,13 +26,13 @@ public class PartyMember {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "party_id")
-    private Party line;
-
+    private Party party;
 
     @Builder
-    public PartyMember(Long id, String nickName) {
+    public PartyMember(Long id, String nickName, Party party) {
         this.id = id;
         this.nickName = nickName;
+        this.party = party;
     }
 
 }
