@@ -24,13 +24,14 @@ class JWTRequestTest extends WebIntefrationTest {
             .id(0L)
             .email("tkaqkeldk@naver.com")
             .password("1234")
+            .nickName("test")
             .build();
 
     @BeforeEach
     void before() {
         userRepository.deleteAll();
 
-        loginService.join(new LoginReq(USER.getEmail(), USER.getPassword()));
+        loginService.join(new LoginReq(USER.getEmail(), USER.getPassword(), USER.getNickName()));
     }
 
 
@@ -38,7 +39,7 @@ class JWTRequestTest extends WebIntefrationTest {
     @DisplayName("로그인_후_토큰을_받는다")
     void loginAfterGetToken() {
         // When & Then
-        final String login = String.valueOf(loginService.login(new LoginReq(USER.getEmail(), USER.getPassword())));
+        final String login = String.valueOf(loginService.login(new LoginReq(USER.getEmail(), USER.getPassword(), USER.getNickName())));
         assertThat(login).isNotNull();
     }
 
