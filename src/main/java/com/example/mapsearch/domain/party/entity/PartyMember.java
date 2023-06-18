@@ -35,4 +35,14 @@ public class PartyMember {
         this.party = party;
     }
 
+    public static PartyMember of(final String nickName) {
+        return PartyMember.builder()
+                .nickName(nickName)
+                .build();
+    }
+
+    public void updateParty(final Party party) {
+        this.party = party;
+    }
+
 }

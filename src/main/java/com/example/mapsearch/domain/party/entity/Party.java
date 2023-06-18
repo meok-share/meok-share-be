@@ -58,12 +58,14 @@ public class Party extends BaseTimeEntity {
         this.partyComment = partyComment;
         this.partyDate = partyDate;
         this.partySize = partySize;
-        this.currentPartySize = getCurrentPartySize();
     }
 
-    public void addPartyMember(final PartyMember member) {
-        this.partyMembers.add(member, partySize);
-        this.currentPartySize = getCurrentPartySize();
+    public void addMember(final PartyMember member) {
+        PartyMember partyMember = PartyMember.of(member.getNickName());
+        partyMember.updateParty(this);
+
+        partyMembers.add(partyMember, partySize);
+        currentPartySize = getCurrentPartySize();
     }
 
     public void removePartyMember(final PartyMember member) {

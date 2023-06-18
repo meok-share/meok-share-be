@@ -47,6 +47,7 @@ public class LoginService {
         userRepository.save(User.builder()
                 .email(user.getEmail())
                 .password(passwordEncoder.encode(user.getPassword()))
+                .nickName(user.getNickName())
                 .roles(Collections.singletonList("ROLE_USER")) // 최초 가입시 USER 로 설정
                 .build());
     }
