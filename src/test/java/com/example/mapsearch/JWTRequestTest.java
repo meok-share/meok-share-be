@@ -38,7 +38,7 @@ class JWTRequestTest extends WebIntefrationTest {
     @DisplayName("로그인_후_토큰을_받는다")
     void loginAfterGetToken() {
         // When & Then
-        final String login = loginService.login(new LoginReq(USER.getEmail(), USER.getPassword()));
+        final String login = String.valueOf(loginService.login(new LoginReq(USER.getEmail(), USER.getPassword())));
         assertThat(login).isNotNull();
     }
 

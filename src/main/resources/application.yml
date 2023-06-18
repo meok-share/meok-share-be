@@ -55,7 +55,7 @@ spring:
       hibernate:
         id.new_generator_mappings: false
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
 
