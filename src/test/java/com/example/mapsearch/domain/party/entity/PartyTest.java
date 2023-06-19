@@ -87,7 +87,6 @@ class PartyTest {
         assertThat(인사동_파티.getCurrentPartySize()).isEqualTo(2);
         assertThat(인사동_파티.isFullMember()).isFalse();
 
-        System.out.println("party = " + 인사동_파티.getPartyMemberAll());
     }
 
 

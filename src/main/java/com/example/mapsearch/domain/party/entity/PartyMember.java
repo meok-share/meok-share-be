@@ -45,4 +45,7 @@ public class PartyMember {
         this.party = party;
     }
 
+    public void removeParty() {
+        this.party = null;
+    }
 }

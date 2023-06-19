@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Entity
@@ -69,8 +70,18 @@ public class Party extends BaseTimeEntity {
     }
 
     public void removePartyMember(final PartyMember member) {
-        this.partyMembers.remove(member);
+        PartyMember findMember = findMember(member);
+
+        partyMembers.remove(findMember);
         this.currentPartySize = getCurrentPartySize();
+    }
+
+    private PartyMember findMember(final PartyMember member) {
+        return this.partyMembers.getPartyMembers()
+                .stream()
+                .filter(partyMember -> !partyMember.getNickName().equals(member.getNickName()))
+                .findFirst()
+                .orElse(null);
     }
 
     public int getCurrentPartySize() {
@@ -79,10 +90,6 @@ public class Party extends BaseTimeEntity {
 
     public boolean isFullMember() {
         return getCurrentPartySize() == partySize;
-    }
-
-    public List<PartyMember> getPartyMemberAll() {
-        return partyMembers.getPartyMembers();
     }
 
 }
